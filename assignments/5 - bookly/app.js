@@ -1,4 +1,4 @@
-let bookArr = [{name: 'Jolene', id: 1}, {name:'Pearl', id: 2}];
+let bookArr = [];
 let form = document.body.querySelector('#add-book');
 let addBtn = document.body.querySelector('#add-book > button');
 let hideBtn = document.body.querySelector('#add-book input[type=checkbox]');
@@ -6,7 +6,7 @@ let ulElem = document.body.querySelector('ul');
 let nameField = document.body.querySelector('#add-book > input:nth-child(3)');
 let searchField = document.body.querySelector('#search-books > input:first-child');
 //searchField.addEventListener('keydown', searchBook);
-let uId = 3;
+let uId = 1;
 function updateUI(arr){
     ulElem.innerHTML = '';
     let str = '';
@@ -54,6 +54,12 @@ document.addEventListener('click', function(event){
     else if(addElem.matches('header input')) {
         //event.preventDefault;
         resetUI();
+    }
+    else if(addElem.matches('#hide')){
+        if(addElem.checked)
+            ulElem.hidden = true;
+        else
+            ulElem.hidden = false;
     }
 });
 
