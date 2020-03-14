@@ -156,8 +156,7 @@ function generateHTML(todoObj) {
     todoFieldRepl.classList.add('todo-field-repl');
     todoFieldElem.type = 'text';
     todoFieldElem.classList.add('todo-text-Field');
-    todoFieldElem.value = todoObj['text'];
-    todoFieldElem.style.display = 'none';
+    todoFieldElem.hidden = true;
     
     todoItemElem.append(flipflopElem,todoFieldRepl, todoFieldElem, deleteTodoButtonElem);
     return todoItemElem.outerHTML;
@@ -366,22 +365,28 @@ function makeButtonsWorking(){
     let todoFieldReplElemArr = document.body.querySelectorAll('.todo-field-repl');
     todoFieldReplElemArr.forEach(elem => {
         elem.addEventListener('dblclick', function(e){
-        elem.contentEditable=true;
-        elem.style.boxShadow = 'inset 2px 2px 9px 2px rgba(0,0,0,0.75)';
-        elem.style.borderRadius = '12px';
+    //     //elem.contentEditable=true;
+    //     elem.style.boxShadow = 'inset 2px 2px 9px 2px rgba(0,0,0,0.75)';
+    //     elem.style.borderRadius = '12px';
+    //    //elem.nextElementSibling.hidden = false;
+        
         
         //elem.style.border = '1px solid red';
-        
+        elem.nextElementSibling.value = elem.textContent;
+        elem.hidden = true;
+        elem.nextElementSibling.hidden = false;
         });
         elem.addEventListener('mousedown', function(e){ e.preventDefault(); }, false);
 
     });
-    todoFieldReplElemArr.forEach((elem,index) => {
+    let todoFieldElemArr = document.body.querySelectorAll('.todo-text-Field');
+    
+    todoFieldElemArr.forEach((elem,index) => {
         elem.addEventListener('keydown', function(e){
             if(e.keyCode == 13) {
-                e.preventDefault();
-                elem.contentEditable=false;
-                console.log(elem.textContent);
+                //e.preventDefault();
+                elem.contentEditable=true;
+                console.log("EDiting:" + this.textContent);
                 todoAll[index]['text'] = elem.textContent.trim();
                 if(boolAll) {
                     fillAllHandler(event);
@@ -392,7 +397,12 @@ function makeButtonsWorking(){
                 else if(boolCompleted) {
                     fillCompletedHandler(event);
                 }    
+                elem.hidden = true;
+                console.log('Assigning value:' + todoAll[index]['text'])
+                elem.previousElementSibling.textContent = todoAll[index]['text'];
+                elem.previousElementSibling.hidden = false;
             }
+            
         });
     });
     let liElemArr = document.body.querySelectorAll('li');
