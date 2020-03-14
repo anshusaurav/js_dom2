@@ -35,8 +35,16 @@
         let name = nameField.value.trim();
         let email = emailField.value.trim();
         let pass = passwordField.value.trim();
-        if(name.length  == 0 || email.length == 0 || pass.length == 0) {
-          alert("Please enter all fields.")
+        if(name.length  == 0) { 
+          alert("Name can't be empty!")
+          return;
+        }
+        if(email.length  == 0) { 
+          alert("Email can't be empty!")
+          return;
+        }
+        if(pass.length  < 6) { 
+          alert("password must be longer than 6!")
           return;
         }
         let str = (`<p class='res-text'>You are ${name}\n Your email: 
