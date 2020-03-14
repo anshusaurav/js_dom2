@@ -51,16 +51,16 @@ let mainButtonDiv = document.createElement('div');
 mainButtonDiv.classList.add('main-buttons');
 
 
-let allButton = document.createElement('button');
+let allButton = document.createElement('a');
 allButton.innerHTML = 'All';
 
 allButton.addEventListener('click', fillAllHandler);
 allButton.classList.add('footer-btn');
-let activeButton = document.createElement('button');
+let activeButton = document.createElement('a');
 activeButton.innerHTML = 'Active'; 
 activeButton.classList.add('footer-btn');
 activeButton.addEventListener('click', fillActiveHandler);
-let completedButton = document.createElement('button');
+let completedButton = document.createElement('a');
 completedButton.innerHTML = 'Completed'; 
 completedButton.classList.add('footer-btn');
 completedButton.addEventListener('click', fillCompletedHandler);
@@ -167,10 +167,6 @@ function generateStyleDivs() {
 function fillAllHandler(event) {
     fillAllTodo();
     boolAll = true, boolActive = false, boolCompleted = false;
-    // todoAll.forEach(elem =>{
-    //     console.log(elem['text'] + " " +elem['status']);
-    // });
-   
 }
 function fillAllTodo() {
     ulElem.innerHTML = '';
@@ -194,10 +190,6 @@ function fillAllTodo() {
 function fillActiveHandler(event) {
     fillActiveTodo();
     boolAll = false, boolActive = true, boolCompleted = false;
-    // todoAll.forEach(elem =>{
-    //     if(elem['status'] == 'active')
-    //         console.log(elem['text'] + " " +elem['status']);
-    // });
     let elmArr = document.body.querySelectorAll('li');
     var indArrActive = todoAll.reduce((acc, ele, indexNew) =>{
         if(ele['status'] == 'active')
@@ -207,7 +199,6 @@ function fillActiveHandler(event) {
     elmArr.forEach((elem, index) =>{
         
         let tiktokElem = elem.querySelector('.flip-flop');
-        //console.log(tiktokElem.checked);
         if(todoAll[indArrActive[index]]['status'] == 'active')
             tiktokElem.checked = false;
         else
@@ -216,7 +207,6 @@ function fillActiveHandler(event) {
 }
 function fillActiveTodo() {
     ulElem.innerHTML = '';
-   // console.log(todoActive.length);
     for(var i = 0; i < todoAll.length; i++) {
         if(todoAll[i].status == 'active') {
             let liElem = document.createElement('li');
@@ -242,7 +232,6 @@ function fillCompletedHandler(event) {
     elmArr.forEach((elem, index) =>{
         
         let tiktokElem = elem.querySelector('.flip-flop');
-        //console.log(tiktokElem.checked);
         if(todoAll[indArrCompleted[index]]['status'] == 'active')
             tiktokElem.checked = false;
         else
@@ -251,7 +240,7 @@ function fillCompletedHandler(event) {
 }
 function fillCompletedTodo() {
     ulElem.innerHTML = '';
-    //console.log(todoActive.length);
+    
     for(var i = 0; i < todoAll.length; i++) {
         if(todoAll[i].status == 'completed'){
             let liElem = document.createElement('li');
@@ -332,10 +321,8 @@ function makeButtonsWorking(){
     },[]);
     flipflopElemArr.forEach((elem, index) => {
             elem.addEventListener('click', function(e){
-            //console.log(flipflopElemArr.length);
             if(boolAll = true){
                 if(this.checked) {
-                    //console.log('completed');
                     (todoAll[index])['status'] = 'completed';
                 }
                 else
@@ -355,7 +342,6 @@ function makeButtonsWorking(){
                 else
                     (indArrCompleted[index])['status'] = 'active';
             }
-            //fillAllHandler(e);
             if(cntActive() > 1)
                 labelElem.innerHTML = `${cntActive()} items left`;
             else
@@ -365,14 +351,7 @@ function makeButtonsWorking(){
     let todoFieldReplElemArr = document.body.querySelectorAll('.todo-field-repl');
     todoFieldReplElemArr.forEach(elem => {
         elem.addEventListener('dblclick', function(e){
-    //     //elem.contentEditable=true;
-    //     elem.style.boxShadow = 'inset 2px 2px 9px 2px rgba(0,0,0,0.75)';
-    //     elem.style.borderRadius = '12px';
-    //    //elem.nextElementSibling.hidden = false;
-        
-        
-        //elem.style.border = '1px solid red';
-        elem.nextElementSibling.value = elem.textContent;
+    elem.nextElementSibling.value = elem.textContent;
         elem.hidden = true;
         elem.nextElementSibling.hidden = false;
         });
@@ -384,9 +363,7 @@ function makeButtonsWorking(){
     todoFieldElemArr.forEach((elem,index) => {
         elem.addEventListener('keydown', function(e){
             if(e.keyCode == 13) {
-                //e.preventDefault();
                 elem.contentEditable=true;
-                //console.log("EDiting:" + this.textContent);
                 todoAll[index]['text'] = elem.value.trim();
                 if(boolAll) {
                     fillAllHandler(event);
@@ -402,7 +379,6 @@ function makeButtonsWorking(){
                 elem.previousElementSibling.textContent = todoAll[index]['text'];
                 elem.previousElementSibling.hidden = false;
             }
-            //console.log(elem.value);
             
         });
     });
@@ -422,20 +398,14 @@ function makeButtonsWorking(){
     let removeTodoElemArr = document.body.querySelectorAll('.delete-button');
     removeTodoElemArr.forEach((elem,index) => {
         elem.addEventListener('click', function(e, index){
-            //console.log("Initial: " + todoAll.length);
             todoAll.splice(index, 1);
-            //console.log("Final: " +todoAll.length);
             let liEl = elem.parentElement;
-            
-            //console.log(todoAll.length);
             let counterElem = document.body.querySelector('.counter-label');
             var cnt = todoAll.reduce((acc,ele,ind) =>{
-                //console.log(ind + " " + ele['status']);
                 if(ele['status'] == 'active')
                     acc++;
                 return acc;
             },0);
-            //console.log(cnt);
             if(cnt > 1)
                 counterElem.innerHTML = `${cnt} items left`;
             else 

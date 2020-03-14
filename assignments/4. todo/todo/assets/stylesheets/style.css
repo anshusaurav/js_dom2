@@ -59,11 +59,14 @@ html {
 
 body {
 	line-height: 1.5;
+	
 }
 
 a {
 	text-decoration: none;
 	outline: none;
+	text-align: center;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 input,
@@ -143,15 +146,25 @@ top-label:hover{
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	border: 1px solid #EAD7D7;
 	border-radius: 2px;
-	height: 28px;
+	height: 28px;	
+	padding: 0 4px;
 }
 .footer-btn:hover {
 	background-color: #FEFEFE;
 	border: 1px solid rgb(226, 152, 152);
+} 
+.footer-btn:visited {
+	background-color: rgb(241, 185, 185);
+	border: 1px solid rgb(233, 67, 67);
 }
 .container{
     width: 600px;
-    margin: 0 auto;
+	margin: 0 auto;
+	@media all and (max-width: 768px)
+	{
+		width: 80%;
+		margin: 0 10%;
+	}
 }
 
 input[type="checkbox"]{
@@ -180,19 +193,11 @@ input[type="checkbox"]:checked:after {
     -moz-transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-    
-     /* content: " ";
-     width: 100%;
-     height: 100%;
-     background: blue;
-     top: 0;
-     left: 0; */
-    
+
 }
 .flip-flop {
 	border-radius: 50%;
 	margin: 1rem 0;		
-	/* border: 1px solid rgb(83, 81, 77); */
 	width: 2rem;
 	margin-left: 16px;
 	height: 2rem;
@@ -208,9 +213,7 @@ input[type="checkbox"]:checked:after {
 	padding-left: 18px;
 	padding-top: 12px;
 }
-divPreLast {
 
-}
 
 .todo-element{
 	list-style: none;
@@ -277,6 +280,12 @@ a:hover{
 	width: 180px;
 	margin: 0 auto;
 	margin-top: 8rem;
+	@media all and (max-width: 768px)
+	{
+		width: 50%;
+		margin: 0 auto;
+		margin-top: 3rem;
+	}
 }
 .smallest-container p{
 	
