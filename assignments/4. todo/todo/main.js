@@ -101,7 +101,7 @@ liElem.addEventListener('mouseleave', function(e){
     deleteTodoButtonElem.style.display ='none';
 });
 function addTodo(event) {
-    console.log(inputElement.value);
+    //console.log(inputElement.value);
     if(event.keyCode == 13) 
     {
         buttonDiv.style.display = 'grid';
@@ -167,9 +167,9 @@ function generateStyleDivs() {
 function fillAllHandler(event) {
     fillAllTodo();
     boolAll = true, boolActive = false, boolCompleted = false;
-    todoAll.forEach(elem =>{
-        console.log(elem['text'] + " " +elem['status']);
-    });
+    // todoAll.forEach(elem =>{
+    //     console.log(elem['text'] + " " +elem['status']);
+    // });
    
 }
 function fillAllTodo() {
@@ -194,10 +194,10 @@ function fillAllTodo() {
 function fillActiveHandler(event) {
     fillActiveTodo();
     boolAll = false, boolActive = true, boolCompleted = false;
-    todoAll.forEach(elem =>{
-        if(elem['status'] == 'active')
-            console.log(elem['text'] + " " +elem['status']);
-    });
+    // todoAll.forEach(elem =>{
+    //     if(elem['status'] == 'active')
+    //         console.log(elem['text'] + " " +elem['status']);
+    // });
     let elmArr = document.body.querySelectorAll('li');
     var indArrActive = todoAll.reduce((acc, ele, indexNew) =>{
         if(ele['status'] == 'active')
@@ -332,10 +332,10 @@ function makeButtonsWorking(){
     },[]);
     flipflopElemArr.forEach((elem, index) => {
             elem.addEventListener('click', function(e){
-            console.log(flipflopElemArr.length);
+            //console.log(flipflopElemArr.length);
             if(boolAll = true){
                 if(this.checked) {
-                    console.log('completed');
+                    //console.log('completed');
                     (todoAll[index])['status'] = 'completed';
                 }
                 else
@@ -386,8 +386,8 @@ function makeButtonsWorking(){
             if(e.keyCode == 13) {
                 //e.preventDefault();
                 elem.contentEditable=true;
-                console.log("EDiting:" + this.textContent);
-                todoAll[index]['text'] = elem.textContent.trim();
+                //console.log("EDiting:" + this.textContent);
+                todoAll[index]['text'] = elem.value.trim();
                 if(boolAll) {
                     fillAllHandler(event);
                 }
@@ -402,6 +402,7 @@ function makeButtonsWorking(){
                 elem.previousElementSibling.textContent = todoAll[index]['text'];
                 elem.previousElementSibling.hidden = false;
             }
+            //console.log(elem.value);
             
         });
     });
@@ -421,12 +422,12 @@ function makeButtonsWorking(){
     let removeTodoElemArr = document.body.querySelectorAll('.delete-button');
     removeTodoElemArr.forEach((elem,index) => {
         elem.addEventListener('click', function(e, index){
-            console.log("Initial: " + todoAll.length);
+            //console.log("Initial: " + todoAll.length);
             todoAll.splice(index, 1);
-            console.log("Final: " +todoAll.length);
+            //console.log("Final: " +todoAll.length);
             let liEl = elem.parentElement;
             
-            console.log(todoAll.length);
+            //console.log(todoAll.length);
             let counterElem = document.body.querySelector('.counter-label');
             var cnt = todoAll.reduce((acc,ele,ind) =>{
                 //console.log(ind + " " + ele['status']);
