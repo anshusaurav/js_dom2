@@ -5,6 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Basic Counter App</title>
+    <link rel="stylesheet"  href = "style.css">
+    <link href="https://fonts.googleapis.com/css?family=Spartan:300,400,600,700&display=swap" rel="stylesheet"> 
+  
   </head>
-  <body></body>
+  <body>
+    <div class='container'>
+      <h1>Basic Counter App</h1>
+      <section class='main'> 
+        <div class='inc-btn'>&#8710</div>
+        <div class='dec-btn'>&#8710</div>
+        <div class='res-btn'>&#8634</div> 
+        <div class='num'>0</div>
+      </section>
+      
+    </div>
+    <script>
+      let n = 0;
+      let inc = document.body.querySelector('.inc-btn');
+      inc.addEventListener('click', increment);
+      let dec = document.body.querySelector('.dec-btn');
+      dec.addEventListener('click', decrement);
+      let res = document.body.querySelector('.res-btn');
+      res.addEventListener('click', reset);
+      let numElem = document.body.querySelector('.num');
+      inc.addEventListener('mousedown', function(e){ e.preventDefault(); }, false);
+      dec.addEventListener('mousedown', function(e){ e.preventDefault(); }, false);
+      res.addEventListener('mousedown', function(e){ e.preventDefault(); }, false);
+      
+      function updateUI(n = 0) {
+        numElem.innerHTML = ''+ n;
+      }
+      function increment(e) {
+        n++;
+        updateUI(n);
+      }
+      function decrement(e) {
+        n--;
+        updateUI(n);
+      }
+      function reset(e) {
+        n = 0;
+        updateUI(n);
+      }
+      // function clearSelection() {
+      //   if(document.selection && document.selection.empty) {
+      //       document.selection.empty();
+      //   } else if(window.getSelection) {
+      //       var sel = window.getSelection();
+      //       sel.removeAllRanges();
+      //   }
+      // }
+      // clearSelection();
+    </script>
+  </body>
 </html>
